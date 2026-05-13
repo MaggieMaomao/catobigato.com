@@ -1,0 +1,1 @@
+# Apps package — core Django apps for CatobiGato

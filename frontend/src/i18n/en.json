@@ -1,0 +1,96 @@
+{
+  "app": {
+    "name": "CatobiGato",
+    "tagline": "Learn. Practice. Grow."
+  },
+  "nav": {
+    "home": "Home",
+    "calculator": "Calculator",
+    "learning": "Learning",
+    "puzzles": "Puzzles",
+    "social": "Social",
+    "visual_math": "Visual Math",
+    "profile": "Profile",
+    "settings": "Settings"
+  },
+  "auth": {
+    "signIn": "Sign In",
+    "signOut": "Sign Out",
+    "signUp": "Sign Up",
+    "welcome": "Welcome"
+  },
+  "calculator": {
+    "title": "Calculator",
+    "basic": "Basic",
+    "scientific": "Scientific",
+    "trigonometric": "Trigonometric",
+    "algebra": "Algebra",
+    "calculus": "Calculus",
+    "graph": "Graph",
+    "evaluate": "Evaluate",
+    "clear": "Clear",
+    "history": "History",
+    "result": "Result",
+    "myFunctions": "My Functions",
+    "createFunction": "Create Function",
+    "functionName": "Function Name",
+    "parameters": "Parameters",
+    "expression": "Expression",
+    "addParameter": "Add Parameter",
+    "saveFunction": "Save Function"
+  },
+  "learning": {
+    "notes": "Notes",
+    "questionSets": "Question Sets",
+    "exams": "Exams",
+    "practice": "Practice",
+    "statistics": "Statistics",
+    "createNote": "Create Note",
+    "startExam": "Start Exam"
+  },
+  "visual_math": {
+    "title": "Visual Math",
+    "subtitle": "Interactive geometry, animations, and LaTeX rendering.",
+    "latex": "LaTeX",
+    "geogebra": "GeoGebra",
+    "animate": "Animation",
+    "render": "Render",
+    "ggb_commands": "GGBScript commands:",
+    "loading_geogebra": "Loading GeoGebra applet...",
+    "tip_latex": "Tip: Type any math expression. Press Ctrl+Enter to render.",
+    "tip_geogebra": "Tip: Use geometry keywords like triangle, circle, angle, bisector.",
+    "tip_animate": "Tip: Describe a process or transformation to animate.",
+    "latex_placeholder": "e.g. x^2 + y^2 = 1",
+    "geogebra_placeholder": "e.g. triangle with circumcircle",
+    "animate_placeholder": "e.g. show how a circle area formula is derived",
+    "status_idle": "—",
+    "status_pending": "Queued",
+    "status_analysis": "Analyzing concept...",
+    "status_design": "Designing scene...",
+    "status_coding": "Generating code...",
+    "status_rendering": "Rendering animation...",
+    "status_done": "Done!",
+    "status_failed": "Failed"
+  },
+  "subjects": {
+    "math": "Mathematics",
+    "physics": "Physics",
+    "chemistry": "Chemistry",
+    "biology": "Biology",
+    "literacy": "Literacy",
+    "arts": "Arts",
+    "general": "General"
+  },
+  "common": {
+    "save": "Save",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "edit": "Edit",
+    "create": "Create",
+    "search": "Search",
+    "loading": "Loading...",
+    "error": "An error occurred",
+    "success": "Success",
+    "noData": "No data"
+  }
+}

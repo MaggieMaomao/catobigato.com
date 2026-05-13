@@ -1,0 +1,96 @@
+{
+  "app": {
+    "name": "CatobiGato",
+    "tagline": "Apprendre. Pratiquer. Grandir."
+  },
+  "nav": {
+    "home": "Accueil",
+    "calculator": "Calculatrice",
+    "learning": "Apprentissage",
+    "puzzles": "Puzzles",
+    "social": "Social",
+    "visual_math": "Maths Visuelles",
+    "profile": "Profil",
+    "settings": "Paramètres"
+  },
+  "auth": {
+    "signIn": "Connexion",
+    "signOut": "Déconnexion",
+    "signUp": "S'inscrire",
+    "welcome": "Bienvenue"
+  },
+  "calculator": {
+    "title": "Calculatrice",
+    "basic": "Basique",
+    "scientific": "Scientifique",
+    "trigonometric": "Trigonométrique",
+    "algebra": "Algèbre",
+    "calculus": "Calcul",
+    "graph": "Graphique",
+    "evaluate": "Évaluer",
+    "clear": "Effacer",
+    "history": "Historique",
+    "result": "Résultat",
+    "myFunctions": "Mes fonctions",
+    "createFunction": "Créer une fonction",
+    "functionName": "Nom de la fonction",
+    "parameters": "Paramètres",
+    "expression": "Expression",
+    "addParameter": "Ajouter un paramètre",
+    "saveFunction": "Enregistrer la fonction"
+  },
+  "learning": {
+    "notes": "Notes",
+    "questionSets": "Ensembles de questions",
+    "exams": "Examens",
+    "practice": "Pratique",
+    "statistics": "Statistiques",
+    "createNote": "Créer une note",
+    "startExam": "Commencer l'examen"
+  },
+  "visual_math": {
+    "title": "Maths Visuelles",
+    "subtitle": "Géométrie interactive, animations et rendu LaTeX.",
+    "latex": "LaTeX",
+    "geogebra": "GeoGebra",
+    "animate": "Animation",
+    "render": "Rendre",
+    "ggb_commands": "Commandes GGBScript :",
+    "loading_geogebra": "Chargement de GeoGebra...",
+    "tip_latex": "Astuce : Tapez une expression mathématique. Appuyez sur Ctrl+Entrée pour rendre.",
+    "tip_geogebra": "Astuce : Utilisez des mots-clés géométriques comme triangle, cercle, angle, bissectrice.",
+    "tip_animate": "Astuce : Décrivez un processus ou une transformation à animer.",
+    "latex_placeholder": "ex : x^2 + y^2 = 1",
+    "geogebra_placeholder": "ex : triangle avec cercle circonscrit",
+    "animate_placeholder": "ex : montrer comment la formule de l'aire du cercle est dérivée",
+    "status_idle": "—",
+    "status_pending": "En file d'attente",
+    "status_analysis": "Analyse du concept...",
+    "status_design": "Conception de la scène...",
+    "status_coding": "Génération du code...",
+    "status_rendering": "Rendu de l'animation...",
+    "status_done": "Terminé !",
+    "status_failed": "Échec"
+  },
+  "subjects": {
+    "math": "Mathématiques",
+    "physics": "Physique",
+    "chemistry": "Chimie",
+    "biology": "Biologie",
+    "literacy": "Littératie",
+    "arts": "Arts",
+    "general": "Général"
+  },
+  "common": {
+    "save": "Enregistrer",
+    "cancel": "Annuler",
+    "delete": "Supprimer",
+    "edit": "Modifier",
+    "create": "Créer",
+    "search": "Rechercher",
+    "loading": "Chargement...",
+    "error": "Une erreur s'est produite",
+    "success": "Succès",
+    "noData": "Aucune donnée"
+  }
+}

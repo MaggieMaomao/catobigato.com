@@ -1,0 +1,33 @@
+services:
+  # ── API ──────────────────────────────────────────────────────────────
+  catobigato-api:
+    build:
+      context: ./backend-fastapi
+      dockerfile: Dockerfile
+    container_name: catobigato-api
+    restart: unless-stopped
+    environment:
+      - DEBUG=false
+      - DB_HOST=whereq-db
+      - DB_PORT=5432
+      - DB_NAME=catobigato
+      - DB_USER=catobigato
+      - DB_PASSWORD=${DB_PASSWORD:-CatoBigato2026!}
+      - KEYCLOAK_URL=https://www.keytomarvel.com
+      - KEYCLOAK_REALM=catobigato
+      - KEYCLOAK_CLIENT_ID=catobigato
+      - CORS_ORIGINS=["https://catobigato.com","http://catobigato.com"]
+    ports:
+      - "8001:8001"
+
+  # ── Frontend ───────────────────────────────────────────────────────────
+  catobigato-frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: catobigato-frontend
+    restart: unless-stopped
+    ports:
+      - "8081:8081"
+    depends_on:
+      - catobigato-api

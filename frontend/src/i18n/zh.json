@@ -1,0 +1,96 @@
+{
+  "app": {
+    "name": "CatobiGato",
+    "tagline": "学习 · 练习 · 成长"
+  },
+  "nav": {
+    "home": "首页",
+    "calculator": "计算器",
+    "learning": "学习",
+    "puzzles": "题库",
+    "social": "社交",
+    "visual_math": "可视化数学",
+    "profile": "个人资料",
+    "settings": "设置"
+  },
+  "auth": {
+    "signIn": "登录",
+    "signOut": "退出",
+    "signUp": "注册",
+    "welcome": "欢迎"
+  },
+  "calculator": {
+    "title": "计算器",
+    "basic": "基础",
+    "scientific": "科学",
+    "trigonometric": "三角",
+    "algebra": "代数",
+    "calculus": "微积分",
+    "graph": "绘图",
+    "evaluate": "计算",
+    "clear": "清除",
+    "history": "历史",
+    "result": "结果",
+    "myFunctions": "我的函数",
+    "createFunction": "创建函数",
+    "functionName": "函数名称",
+    "parameters": "参数",
+    "expression": "表达式",
+    "addParameter": "添加参数",
+    "saveFunction": "保存函数"
+  },
+  "learning": {
+    "notes": "笔记",
+    "questionSets": "题集",
+    "exams": "考试",
+    "practice": "练习",
+    "statistics": "统计",
+    "createNote": "创建笔记",
+    "startExam": "开始考试"
+  },
+  "visual_math": {
+    "title": "可视化数学",
+    "subtitle": "交互几何、动画演示与 LaTeX 渲染",
+    "latex": "LaTeX",
+    "geogebra": "GeoGebra",
+    "animate": "动画",
+    "render": "渲染",
+    "ggb_commands": "GGBScript 命令：",
+    "loading_geogebra": "正在加载 GeoGebra...",
+    "tip_latex": "提示：输入任何数学表达式，按 Ctrl+Enter 渲染。",
+    "tip_geogebra": "提示：使用几何关键词，如 triangle、circle、angle、bisector。",
+    "tip_animate": "提示：描述一个过程或变换来生成动画。",
+    "latex_placeholder": "例如：x^2 + y^2 = 1",
+    "geogebra_placeholder": "例如：三角形及其外接圆",
+    "animate_placeholder": "例如：演示圆面积公式的推导过程",
+    "status_idle": "—",
+    "status_pending": "排队中",
+    "status_analysis": "正在分析概念...",
+    "status_design": "正在设计场景...",
+    "status_coding": "正在生成代码...",
+    "status_rendering": "正在渲染动画...",
+    "status_done": "完成！",
+    "status_failed": "失败"
+  },
+  "subjects": {
+    "math": "数学",
+    "physics": "物理",
+    "chemistry": "化学",
+    "biology": "生物",
+    "literacy": "语文",
+    "arts": "艺术",
+    "general": "通用"
+  },
+  "common": {
+    "save": "保存",
+    "cancel": "取消",
+    "delete": "删除",
+    "edit": "编辑",
+    "create": "创建",
+    "search": "搜索",
+    "loading": "加载中...",
+    "error": "发生错误",
+    "success": "成功",
+    "noData": "暂无数据"
+  }
+}
