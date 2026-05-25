@@ -461,7 +461,7 @@ function TutorPreview() {
                   >
                     {item.icon}
                   </span>
-                  <span className="font-medium">{item.label}</span>
+                  <span className="font-medium whitespace-nowrap">{item.label}</span>
                 </button>
               ))}
             </div>
@@ -471,7 +471,7 @@ function TutorPreview() {
                 style={{ background: 'transparent', color: 'rgba(250,241,226,0.65)' }}
               >
                 <span className="w-5 h-5 grid place-items-center rounded-[5px] text-xs" style={{ background: 'rgba(255,255,255,0.04)', color: 'rgba(250,241,226,0.85)' }}>⚙</span>
-                <span className="font-medium">{t('tutorPreview.settings')}</span>
+                <span className="font-medium whitespace-nowrap">{t('tutorPreview.settings')}</span>
               </button>
             </div>
           </aside>
@@ -532,7 +532,7 @@ function TutorPreview() {
                     style={{ background: 'rgba(255,255,255,0.04)', border: '0.5px solid rgba(255,255,255,0.06)', color: 'rgba(250,241,226,0.65)', fontFamily: 'var(--font-mono)' }}
                   >
                     <span className="w-[6px] h-[6px] rounded-full" style={{ background: 'var(--orange-l)', boxShadow: '0 0 0 2px rgba(244,168,106,0.2)' }} />
-                    cato-4o-mini
+                    CatoBigato 
                   </span>
                   <button
                     className="w-8 h-8 rounded-full border-0 grid place-items-center cursor-pointer ml-[2px] transition-all duration-150"
