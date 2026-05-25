@@ -195,10 +195,14 @@ preflight() {
         fi
 
         if ! git -C "$PROJECT_ROOT" diff --quiet || \
-           ! git -C "$PROJECT_ROOT" diff --cached --quiet; then
-            error "Uncommitted changes detected. Commit or stash them first."
+           ! git -C "$PROJECT_ROOT" diff --cached --quiet || \
+           [[ -n "$(git -C "$PROJECT_ROOT" ls-files --others --exclude-standard)" ]]; then
+            warn "Uncommitted changes detected — auto-committing with release message."
             git -C "$PROJECT_ROOT" status --short
-            exit 1
+            echo ""
+            git -C "$PROJECT_ROOT" add -A
+            git -C "$PROJECT_ROOT" commit -m "$COMMIT_MSG"
+            success "Auto-committed: $(git -C "$PROJECT_ROOT" log -1 --oneline)"
         fi
 
         # Verify the remote uses the correct SSH host alias
