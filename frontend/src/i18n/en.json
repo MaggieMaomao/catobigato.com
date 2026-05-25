@@ -1,10 +1,11 @@
 {
   "app": {
-    "name": "CatobiGato",
+    "name": "CatoBigato",
     "tagline": "Learn. Practice. Grow."
   },
   "nav": {
     "home": "Home",
+    "tutor": "Tutor",
     "calculator": "Calculator",
     "learning": "Learning",
     "puzzles": "Puzzles",
@@ -14,10 +15,223 @@
     "settings": "Settings"
   },
   "auth": {
-    "signIn": "Sign In",
-    "signOut": "Sign Out",
+    "signIn": "Sign in",
+    "signOut": "Sign out",
     "signUp": "Sign Up",
     "welcome": "Welcome"
+  },
+  "hero": {
+    "eyebrow": "AI study companion \u00b7 K-12 to college",
+    "title_pre": "Learn anything with ",
+    "title_em": "a clever cat",
+    "title_post": " by your side.",
+    "lede": "CatoBigato is a warm, witty tutor that explains, quizzes, and graphs \u2014 across math, science, and the humanities. Snap a problem, ask in plain English, get a real teacher's answer \u2014 CatoBigato adapts to how you think.",
+    "startLearning": "Start learning",
+    "watchDemo": "Watch demo \u00b7 2 min",
+    "subjects": "Subjects",
+    "rating": "Student rating",
+    "solved": "Problems solved",
+    "floatSolve": "Solve for x",
+    "floatBalance": "Balance equation",
+    "floatEssay": "Essay graded",
+    "floatEssaySub": "A\u2212 \u00b7 clear thesis",
+    "floatStreak": "14-day streak",
+    "floatStreakSub": "keep it up"
+  },
+  "pillars": {
+    "tag": "All your tools, gently arranged",
+    "title_pre": "Five tools, ",
+    "title_em": "one calm desk",
+    "title_post": ".",
+    "desc": "Each lives behind a single nav item up top \u2014 but here's what's inside.",
+    "open": "Open"
+  },
+  "pillar": {
+    "tutor": {
+      "tag": "The flagship",
+      "title_pre": "Just talk. ",
+      "title_em": "Catobi listens, thinks, and shows the work.",
+      "desc": "A chat-first tutor \u2014 attach knowledge bases, keep memory across sessions, draft essays in Co-Writer, switch to a TutorBot specialist per subject."
+    },
+    "calculator": {
+      "tag": "Compute",
+      "title_pre": "One calculator. ",
+      "title_em": "Six modes.",
+      "desc": "From arithmetic to symbolic calculus, with custom user-defined functions you can save and reuse."
+    },
+    "learning": {
+      "tag": "Practice",
+      "title_pre": "Notes, sets, exams \u2014 ",
+      "title_em": "one quiet record",
+      "title_post": ".",
+      "desc": "Write notes, build question sets, run timed exams, and rework what you missed. Catobi checks; teachers can too."
+    },
+    "puzzles": {
+      "tag": "Discover",
+      "title_pre": "Puzzles, daily. ",
+      "title_em": "Curriculum-aligned.",
+      "desc": "Browse a growing bank of curated problems \u2014 or design your own and share them. Version-controlled, exportable."
+    },
+    "social": {
+      "tag": "Together",
+      "title_pre": "Study with friends. ",
+      "title_em": "Or quietly alone.",
+      "desc": "Follow classmates, form study groups, share progress to Google Calendar or WeChat. Competition is opt-in and never loud."
+    },
+    "visual": {
+      "tag": "Visualize",
+      "title_pre": "Every concept, ",
+      "title_em": "drawn live",
+      "title_post": ".",
+      "desc": "Animated SVG diagrams across math, physics, chemistry, biology, literacy, and arts. Render is in your browser \u2014 fast and offline-friendly."
+    }
+  },
+  "navTree": {
+    "tutor": {
+      "blurb": "Talk to Catobi. Explanations, drafts, and memory across sessions.",
+      "chat": "Chat",
+      "tutorbot": "TutorBot",
+      "cowriter": "Co-Writer",
+      "book": "Read books",
+      "knowledge": "Knowledge base",
+      "memory": "Memory"
+    },
+    "calculator": {
+      "blurb": "Six modes in one \u2014 from arithmetic to symbolic.",
+      "basic": "Basic",
+      "scientific": "Scientific",
+      "calculus": "Calculus",
+      "algebra": "Algebra solver",
+      "graphing": "Graphing",
+      "custom": "Custom functions"
+    },
+    "learning": {
+      "blurb": "Notes, sets, exams \u2014 your study record in one place.",
+      "notes": "Notes",
+      "sets": "Question sets",
+      "exams": "Timed exams",
+      "practice": "Practice",
+      "corrections": "Corrections study",
+      "stats": "Stats & reports"
+    },
+    "puzzles": {
+      "blurb": "Curriculum-aligned problems & user-made puzzles.",
+      "browse": "Browse puzzles",
+      "daily": "Daily puzzle",
+      "create": "Create a puzzle",
+      "mine": "My puzzles",
+      "aligned": "Curriculum sets",
+      "import": "Import / export"
+    },
+    "social": {
+      "blurb": "Friends, groups, and gentle, opt-in study competition.",
+      "friends": "Friends",
+      "groups": "Study groups",
+      "messages": "Messages",
+      "feed": "Activity feed",
+      "board": "Leaderboards",
+      "calendar": "Share to Calendar"
+    },
+    "visual": {
+      "blurb": "Every subject as an animated, interactive SVG.",
+      "math": "Mathematics",
+      "phys": "Physics",
+      "chem": "Chemistry",
+      "bio": "Biology",
+      "lit": "Literacy",
+      "arts": "Arts"
+    }
+  },
+  "tutorPreview": {
+    "tag": "AI Tutor \u00b7 live preview",
+    "title_pre": "The whole tutor, ",
+    "title_em": "one quiet window",
+    "title_post": ".",
+    "desc": "Chat with Catobi, summon a TutorBot specialist, attach reading material, draft essays in Co-Writer \u2014 every mode shares the same memory of you.",
+    "greeting": "What are we learning today?",
+    "placeholder": "Ask Catobi anything \u2014 paste a problem, snap a photo, or just chat.",
+    "attach": "Attach",
+    "send": "Send",
+    "settings": "Settings",
+    "newChat": "New chat",
+    "chipLabel": "Try a prompt",
+    "example1": "Explain photosynthesis like I'm 11.",
+    "example2": "Solve x\u00b2 \u2212 5x + 6 = 0 step by step.",
+    "example3": "Critique the thesis of my essay (attached).",
+    "example4": "Quiz me on the French Revolution.",
+    "saveNotebook": "Save to Notebook",
+    "activity": "Activity"
+  },
+  "calcPreview": {
+    "tag": "Calculator \u00b7 live",
+    "title_pre": "Type math like you'd speak it. ",
+    "title_em": "See it come alive.",
+    "desc": "Catobi writes back in natural language, beautifully typeset math, and live graphs. Interrupt her any time \u2014 argue, follow up, or ask 'wait, why?'",
+    "list1": "Live graphing and a geometry sketchpad.",
+    "list2": "Symbolic math \u2014 not just numerical answers.",
+    "list3": "Reads photos including handwritten formulas.",
+    "list4": "Custom user-defined functions you can save, share, version.",
+    "tabSolve": "Solve",
+    "tabGraph": "Graph",
+    "tabNotes": "Notes",
+    "explain": "Power rule term-by-term: \u222b3x\u00b2 = x\u00b3, \u222b2x = x\u00b2. Don't forget the constant of integration"
+  },
+  "subjectsStrip": {
+    "tag": "Subjects covered",
+    "title_pre": "From grade school to grad school, ",
+    "title_em": "nearly every subject",
+    "title_post": ".",
+    "desc": "Catobi speaks a different language for every field \u2014 same warmth, same patience."
+  },
+  "flow": {
+    "tag": "How it works",
+    "title_pre": "One question, ",
+    "title_em": "five gentle steps",
+    "title_post": ".",
+    "desc": "More than answers. Catobi teaches the way of thinking that produced them.",
+    "step1_title": "Snap or type",
+    "step1_desc": "Photo of a worksheet, a PDF, or a question typed in your own words.",
+    "step2_title": "Catobi listens",
+    "step2_desc": "She figures out what's actually being asked, in whichever language you used.",
+    "step3_title": "Works it out",
+    "step3_desc": "Step-by-step reasoning \u2014 proofs shown, diagrams drawn, units checked.",
+    "step4_title": "Quizzes back",
+    "step4_desc": "A short follow-up to make sure it sticks. Never punishing, always playful.",
+    "step5_title": "Tracks the streak",
+    "step5_desc": "Quiet progress notes you'll actually want to read."
+  },
+  "ribbon": {
+    "label1": "Problems solved this week",
+    "label2": "Avg. student rating",
+    "label3": "Subjects \u00b7 K-12 to undergrad",
+    "label4": "Avg. time to first answer"
+  },
+  "quote": {
+    "text_pre": "\"I'm not here to take the test for you \u2014 I'm here to make you ",
+    "text_em": "actually enjoy",
+    "text_post": " the subject you've been dreading.\"",
+    "attr": "your orange tutor"
+  },
+  "footer": {
+    "madeWith": "Made with care",
+    "about": "About",
+    "blog": "Blog",
+    "privacy": "Privacy",
+    "terms": "Terms",
+    "contact": "Contact"
+  },
+  "theme": {
+    "toLight": "Switch to light",
+    "toDark": "Switch to dark"
+  },
+  "subjects": {
+    "math": "Mathematics",
+    "physics": "Physics",
+    "chemistry": "Chemistry",
+    "biology": "Biology",
+    "literacy": "Literacy",
+    "arts": "Arts",
+    "general": "General"
   },
   "calculator": {
     "title": "Calculator",
@@ -63,7 +277,7 @@
     "latex_placeholder": "e.g. x^2 + y^2 = 1",
     "geogebra_placeholder": "e.g. triangle with circumcircle",
     "animate_placeholder": "e.g. show how a circle area formula is derived",
-    "status_idle": "—",
+    "status_idle": "\u2014",
     "status_pending": "Queued",
     "status_analysis": "Analyzing concept...",
     "status_design": "Designing scene...",
@@ -71,15 +285,6 @@
     "status_rendering": "Rendering animation...",
     "status_done": "Done!",
     "status_failed": "Failed"
-  },
-  "subjects": {
-    "math": "Mathematics",
-    "physics": "Physics",
-    "chemistry": "Chemistry",
-    "biology": "Biology",
-    "literacy": "Literacy",
-    "arts": "Arts",
-    "general": "General"
   },
   "common": {
     "save": "Save",

@@ -1,36 +1,115 @@
 @import "tailwindcss";
 
 @theme {
-  --font-sans: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  --font-mono: ui-monospace, Consolas, "Liberation Mono", Menlo, monospace;
+  --font-serif: "Instrument Serif", "Cormorant Garamond", Georgia, serif;
+  --font-sans: "DM Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
+}
 
-  --color-primary: #aa3bff;
-  --color-primary-hover: #9335e8;
-  --color-secondary: #6b6375;
-  --color-accent: #aa3bff;
+/* ── Light theme (default) — Warm Ghibli-academic palette ────────────────── */
+:root {
+  /* Core backgrounds */
+  --bg:        #FAF5EC;
+  --bg-2:      #F3EBD8;
+  --bg-deep:   #EFE3CA;
+
+  /* Ink / text */
+  --ink:       #2A1E12;
+  --ink-soft:  #5C4A36;
+  --ink-muted: #8C7A62;
+
+  /* Rules / borders */
+  --rule:      rgba(42, 30, 18, 0.14);
+  --rule-soft: rgba(42, 30, 18, 0.08);
+
+  /* Mascot orange — the brand */
+  --orange:    #E8743B;
+  --orange-d:  #C95A22;
+  --orange-l:  #F4A86A;
+  --cream:     #FBE7C9;
+  --pink:      #F2A8AE;
+  --amber:     #C97A1A;
+
+  /* Subject accent hues */
+  --c-math:    #4B6FE0;
+  --c-phys:    #8757D9;
+  --c-chem:    #1F9D6A;
+  --c-bio:     #C44A6A;
+  --c-lit:     #B8762D;
+  --c-art:     #D94B7A;
+
+  /* Semantic */
   --color-success: #22c55e;
   --color-warning: #f59e0b;
-  --color-error: #ef4444;
+  --color-error:   #ef4444;
 
-  --color-bg: #ffffff;
-  --color-bg-secondary: #f4f3ec;
-  --color-text: #6b6375;
-  --color-text-heading: #08060d;
-  --color-border: #e5e4e7;
+  /* Header / footer height */
+  --header-h: 52px;
+  --footer-h: 44px;
+
+  /* Radii */
+  --r-1: 6px;
+  --r-2: 10px;
+  --r-3: 16px;
+
+  /* Navigation */
+  --nav-bg: rgba(250, 245, 236, 0.85);
+
+  /* Shadows */
+  --shadow-card: 0 1px 4px rgba(42, 30, 18, 0.06), 0 4px 16px rgba(42, 30, 18, 0.04);
+  --shadow-float: 0 10px 30px -12px rgba(42, 30, 18, 0.18);
+  --shadow-mega: 0 24px 60px -20px rgba(42, 30, 18, 0.20), 0 6px 16px -8px rgba(42, 30, 18, 0.12);
 }
 
-html, body {
-  min-height: 100svh;
+/* ── Dark theme ──────────────────────────────────────────────────────────── */
+[data-theme="dark"] {
+  --bg:        #1B1410;
+  --bg-2:      #231A14;
+  --bg-deep:   #120C08;
+
+  --ink:       #FAF1E2;
+  --ink-soft:  #CDB997;
+  --ink-muted: #8B7A60;
+
+  --rule:      rgba(250, 241, 226, 0.12);
+  --rule-soft: rgba(250, 241, 226, 0.06);
+
+  /* Brighter accent for dark bg */
+  --orange:    #F18B4B;
+  --orange-l:  #F8B681;
+
+  --nav-bg: rgba(27, 20, 16, 0.78);
+
+  --shadow-card: 0 1px 4px rgba(0, 0, 0, 0.3), 0 4px 16px rgba(0, 0, 0, 0.2);
+  --shadow-float: 0 10px 30px -12px rgba(0, 0, 0, 0.4);
+  --shadow-mega: 0 24px 60px -20px rgba(0, 0, 0, 0.6), 0 6px 16px -8px rgba(0, 0, 0, 0.4);
 }
+
+/* ── Base ─────────────────────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; min-height: 100svh; }
 
 body {
+  background: var(--bg);
+  color: var(--ink);
   font-family: var(--font-sans);
-  background-color: var(--color-bg);
-  color: var(--color-text);
+  font-size: 15px;
+  line-height: 1.5;
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
 }
+
+/* Paper grain — extremely subtle */
+body::before {
+  content: "";
+  position: fixed; inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  background-image: radial-gradient(rgba(42, 30, 18, 0.025) 1px, transparent 1px);
+  background-size: 3px 3px;
+  mix-blend-mode: multiply;
+}
+[data-theme="dark"] body::before { display: none; }
 
 #root {
   min-height: 100svh;
@@ -38,11 +117,27 @@ body {
   flex-direction: column;
 }
 
-/* KaTeX overrides */
+a { color: inherit; text-decoration: none; }
+button { font: inherit; cursor: pointer; }
+
+/* ── KaTeX ────────────────────────────────────────────────────────────────── */
 .katex { font-size: 1.1em; }
 
-/* Scrollbar styling */
+/* ── Scrollbar ────────────────────────────────────────────────────────────── */
 ::-webkit-scrollbar { width: 6px; height: 6px; }
 ::-webkit-scrollbar-track { background: transparent; }
-::-webkit-scrollbar-thumb { background: var(--color-border); border-radius: 3px; }
-::-webkit-scrollbar-thumb:hover { background: var(--color-secondary); }
+::-webkit-scrollbar-thumb { background: var(--rule); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--ink-muted); }
+
+/* ── Animations ───────────────────────────────────────────────────────────── */
+@keyframes floaty {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-6px); }
+}
+@keyframes blink {
+  50% { opacity: 0; }
+}
+@keyframes mega-in {
+  from { opacity: 0; transform: translate(-50%, -4px); }
+  to   { opacity: 1; transform: translate(-50%, 0); }
+}

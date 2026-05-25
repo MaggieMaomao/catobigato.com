@@ -190,7 +190,7 @@ export default function VisualMathPage() {
     <div className="p-8 max-w-5xl mx-auto">
       {/* Header */}
       <div className="mb-6">
-        <h1 className="text-3xl font-bold text-[--color-text-heading] mb-1">
+        <h1 className="text-3xl font-bold text-[--ink] mb-1">
           {t('nav.visual_math') ?? 'Visual Math'}
         </h1>
         <p className="text-secondary text-sm">
@@ -207,7 +207,7 @@ export default function VisualMathPage() {
             className={`px-4 py-2 rounded-t text-sm font-medium transition-colors ${
               mode === key
                 ? 'bg-primary text-white'
-                : 'bg-transparent text-secondary hover:text-[--color-text-heading]'
+                : 'bg-transparent text-secondary hover:text-[--ink]'
             }`}
           >
             {label}

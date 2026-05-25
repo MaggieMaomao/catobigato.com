@@ -176,11 +176,11 @@ export default function CalculatorPage() {
     const gridLines = [];
     for (let gx = Math.ceil(minX); gx <= maxX; gx++) {
       const sx = toX(gx);
-      gridLines.push(<line key={`gx-${gx}`} x1={sx} y1={pad} x2={sx} y2={h - pad} stroke="var(--color-border)" strokeWidth="1" />);
+      gridLines.push(<line key={`gx-${gx}`} x1={sx} y1={pad} x2={sx} y2={h - pad} stroke="var(--rule)" strokeWidth="1" />);
     }
     for (let gy = Math.ceil(minY); gy <= maxY; gy++) {
       const sy = toY(gy);
-      gridLines.push(<line key={`gy-${gy}`} x1={pad} y1={sy} x2={w - pad} y2={sy} stroke="var(--color-border)" strokeWidth="1" />);
+      gridLines.push(<line key={`gy-${gy}`} x1={pad} y1={sy} x2={w - pad} y2={sy} stroke="var(--rule)" strokeWidth="1" />);
     }
 
     return (
@@ -188,20 +188,20 @@ export default function CalculatorPage() {
         {/* Grid */}
         {gridLines}
         {/* X axis */}
-        <line x1={pad} y1={toY(0)} x2={w - pad} y2={toY(0)} stroke="var(--color-secondary)" strokeWidth="1.5" />
+        <line x1={pad} y1={toY(0)} x2={w - pad} y2={toY(0)} stroke="var(--ink-muted)" strokeWidth="1.5" />
         {/* Y axis */}
-        <line x1={toX(0)} y1={pad} x2={toX(0)} y2={h - pad} stroke="var(--color-secondary)" strokeWidth="1.5" />
+        <line x1={toX(0)} y1={pad} x2={toX(0)} y2={h - pad} stroke="var(--ink-muted)" strokeWidth="1.5" />
         {/* Function curve */}
         <polyline
           points={points}
           fill="none"
-          stroke="var(--color-primary)"
+          stroke="var(--orange)"
           strokeWidth="2"
           strokeLinejoin="round"
         />
         {/* Axis labels */}
-        <text x={w - pad} y={toY(0) - 5} fontSize="12" fill="var(--color-secondary)">x</text>
-        <text x={toX(0) + 5} y={pad - 5} fontSize="12" fill="var(--color-secondary)">y</text>
+        <text x={w - pad} y={toY(0) - 5} fontSize="12" fill="var(--ink-muted)">x</text>
+        <text x={toX(0) + 5} y={pad - 5} fontSize="12" fill="var(--ink-muted)">y</text>
       </svg>
     );
   };
@@ -229,7 +229,7 @@ export default function CalculatorPage() {
               className={`px-4 py-2 text-sm rounded-lg whitespace-nowrap transition-colors ${
                 mode === m.key
                   ? 'bg-primary text-white'
-                  : 'bg-[--color-bg-secondary] text-secondary hover:bg-[--color-border]'
+                  : 'bg-[--bg-2] text-secondary hover:bg-[--rule]'
               }`}
             >
               {m.label}
@@ -256,7 +256,7 @@ export default function CalculatorPage() {
           />
           <button
             onClick={() => setExpression('')}
-            className="absolute right-3 top-1/2 -translate-y-1/2 text-secondary hover:text-[--color-text-heading]"
+            className="absolute right-3 top-1/2 -translate-y-1/2 text-secondary hover:text-[--ink]"
           >
             ✕
           </button>
@@ -269,9 +269,9 @@ export default function CalculatorPage() {
           </div>
         )}
         {result && (
-          <div className="mb-4 p-4 rounded-lg bg-[--color-bg-secondary] border border-border">
+          <div className="mb-4 p-4 rounded-lg bg-[--bg-2] border border-border">
             <div className="text-xs text-secondary mb-1">{t('calculator.result')}</div>
-            <div className="text-2xl font-mono text-[--color-text-heading]">{result}</div>
+            <div className="text-2xl font-mono text-[--ink]">{result}</div>
             {resultLatex && <div className="mt-2">{renderLatex(resultLatex)}</div>}
           </div>
         )}
@@ -288,19 +288,19 @@ export default function CalculatorPage() {
         <div className="flex gap-3 mb-6">
           <button
             onClick={handleEvaluate}
-            className="px-6 py-2 bg-primary text-white rounded-lg font-semibold hover:bg-[--color-primary-hover] transition-colors"
+            className="px-6 py-2 bg-primary text-white rounded-lg font-semibold hover:bg-[--orange-d] transition-colors"
           >
             {t('calculator.evaluate')}
           </button>
           <button
             onClick={() => { setExpression(''); setResult(''); setError(''); setPlotData(null); }}
-            className="px-6 py-2 border border-border rounded-lg hover:bg-[--color-bg-secondary] transition-colors"
+            className="px-6 py-2 border border-border rounded-lg hover:bg-[--bg-2] transition-colors"
           >
             {t('calculator.clear')}
           </button>
           <button
             onClick={() => setShowHistory(!showHistory)}
-            className="px-4 py-2 text-sm text-secondary border border-border rounded-lg hover:bg-[--color-bg-secondary]"
+            className="px-4 py-2 text-sm text-secondary border border-border rounded-lg hover:bg-[--bg-2]"
           >
             {t('calculator.history')} ({history.length})
           </button>
@@ -338,7 +338,7 @@ export default function CalculatorPage() {
                     setResult(r.data.factored || JSON.stringify(r.data));
                   } catch { setError('Server error'); }
                 }}
-                className="px-3 py-1.5 text-xs border border-border rounded hover:bg-[--color-bg-secondary]"
+                className="px-3 py-1.5 text-xs border border-border rounded hover:bg-[--bg-2]"
               >
                 Factor
               </button>
@@ -361,10 +361,10 @@ export default function CalculatorPage() {
               <button
                 key={name}
                 onClick={() => insertSymbol(info.syntax)}
-                className="text-left px-2 py-1 rounded hover:bg-[--color-bg-secondary]"
+                className="text-left px-2 py-1 rounded hover:bg-[--bg-2]"
                 title={info.description}
               >
-                <code className="text-[--color-primary]">{info.syntax}</code>
+                <code className="text-[--orange]">{info.syntax}</code>
               </button>
             ))}
           </div>
@@ -379,7 +379,7 @@ export default function CalculatorPage() {
             <h3 className="font-semibold text-sm">{t('calculator.myFunctions')}</h3>
             <button
               onClick={() => setShowFunctionCreator(!showFunctionCreator)}
-              className="text-xs px-3 py-1 bg-primary text-white rounded hover:bg-[--color-primary-hover]"
+              className="text-xs px-3 py-1 bg-primary text-white rounded hover:bg-[--orange-d]"
             >
               {showFunctionCreator ? '−' : '+'} {t('calculator.createFunction')}
             </button>
@@ -387,7 +387,7 @@ export default function CalculatorPage() {
 
           {/* Function creator */}
           {showFunctionCreator && (
-            <div className="mb-4 p-3 bg-[--color-bg-secondary] rounded-lg">
+            <div className="mb-4 p-3 bg-[--bg-2] rounded-lg">
               <input
                 type="text"
                 value={newFuncName}
@@ -454,7 +454,7 @@ export default function CalculatorPage() {
             <div className="space-y-2">
               {customFunctions.map((fn) => (
                 <div key={fn.id} className="p-2 border border-border rounded text-xs">
-                  <div className="font-semibold text-[--color-primary]">{fn.name}</div>
+                  <div className="font-semibold text-[--orange]">{fn.name}</div>
                   <div className="text-secondary">{fn.description || 'No description'}</div>
                   <div className="font-mono text-secondary mt-1">
                     ({fn.definition.params.map((p) => p.name).join(', ')}) = {fn.definition.body}
@@ -491,9 +491,9 @@ export default function CalculatorPage() {
                   <button
                     key={i}
                     onClick={() => setExpression(item.expression)}
-                    className="w-full text-left p-2 rounded hover:bg-[--color-bg-secondary] text-xs"
+                    className="w-full text-left p-2 rounded hover:bg-[--bg-2] text-xs"
                   >
-                    <div className="font-mono text-[--color-text-heading]">{item.expression}</div>
+                    <div className="font-mono text-[--ink]">{item.expression}</div>
                     <div className="text-secondary">= {item.result}</div>
                   </button>
                 ))}
@@ -510,7 +510,7 @@ function CalcButton({ label, onClick, small }: { label: string; onClick: () => v
   return (
     <button
       onClick={onClick}
-      className={`${small ? 'px-2 py-1 text-xs' : 'px-4 py-2 text-sm'} border border-border rounded hover:bg-[--color-bg-secondary] font-mono transition-colors`}
+      className={`${small ? 'px-2 py-1 text-xs' : 'px-4 py-2 text-sm'} border border-border rounded hover:bg-[--bg-2] font-mono transition-colors`}
     >
       {label}
     </button>

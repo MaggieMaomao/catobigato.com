@@ -1,14 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Silent SSO Check - CatobiGato</title>
-  </head>
+<!doctype html>
+<html>
   <body>
     <script>
-      // Keycloak sends the result of silent check here
-      // The keycloak-js library expects this to be the result
+      parent.postMessage(location.href, location.origin)
     </script>
   </body>
 </html>
