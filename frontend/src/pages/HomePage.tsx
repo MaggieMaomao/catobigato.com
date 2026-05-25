@@ -430,10 +430,10 @@ function TutorPreview() {
           </div>
         </div>
 
-        <div className="tutor-body grid min-h-[460px]" style={{ gridTemplateColumns: '168px 1fr' }}>
+        <div className="tutor-body grid min-h-[460px]" style={{ gridTemplateColumns: '200px 1fr' }}>
           {/* Left rail */}
           <aside
-            className="tutor-rail hidden md:flex flex-col gap-1 p-[14px_10px]"
+            className="tutor-rail hidden md:flex flex-col gap-1 p-[14px_12px]"
             style={{ background: '#120C08', borderRight: '0.5px solid rgba(255,255,255,0.05)' }}
           >
             <div className="flex items-center gap-2 px-2 pb-3 mb-1" style={{ borderBottom: '0.5px solid rgba(255,255,255,0.05)' }}>
