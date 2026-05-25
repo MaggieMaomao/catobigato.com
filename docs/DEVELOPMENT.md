@@ -1,277 +1,354 @@
-# CatobiGato Development Tracker
+# CatobiGato — Development Guide
 
-## Current Status
+_Last updated: 2026-05-12_
 
-**Phase 1 — MVP Core ✅ COMPLETE**
+---
 
 ## Phase Status
 
 | Phase | Name | Status | Notes |
 |-------|------|--------|-------|
-| Phase 1 | MVP Core | ✅ Done | Backend running at :8001, auth integrated, DB migrated |
-| Phase 2 | Learning Module | 🔲 Pending | Notes block editor, Question Sets, Exams |
-| Phase 3 | Calculator Engine | 🔲 Pending | Advanced modes, graphing, custom function system |
-| Phase 4 | Puzzles Module | 🔲 Pending | Crawlers, manual creation, import |
+| Phase 1 | MVP Core | ✅ Done | FastAPI + auth + DB + calculator |
+| Phase 2 | Learning Module | 🔲 Pending | Notes, Questions, Exams |
+| Phase 3 | AI + Visualization | 🔲 Pending | VisionSolverAgent, MathAnimator |
+| Phase 4 | Puzzles Module | 🔲 Pending | Puzzle bank, crawler infra |
 | Phase 5 | Social Features | 🔲 Pending | Follow, groups, messaging |
 | Phase 6 | Platform Integrations | 🔲 Pending | Google Calendar, Gmail, WeChat |
-| Phase 7 | Subject Modules | 🔲 Pending | Physics, Chemistry, Biology, Arts |
 
 ---
 
-## Environment Info
+## Stack Overview
 
-### Backend
-- **Running on**: `http://localhost:8001` (port 8000 occupied by FlowDesk API)
-- **Python**: 3.12.3 in `backend/venv/`
-- **Database**: PostgreSQL `catobigato` at `localhost:5432`
-  - Role: `catobigato` / `CatoBigato2026!`
-  - Owner: `catobigato`
-- **Django settings**: environment-aware dispatch via `catobigato/settings/__init__.py`
-  - `DJANGO_ENV=development` → `development.py`
-  - `DJANGO_ENV=production` → `production.py`
-- **Start command**: `source venv/bin/activate && python manage.py runserver 0.0.0.0:8001`
+| Layer | Technology | Port |
+|-------|-----------|------|
+| Frontend | React 19 + Vite + Tailwind CSS v4 | **8081** (dev & prod) |
+| Backend API | FastAPI + SQLAlchemy async | **8001** |
+| Database | PostgreSQL 17 | 5432 |
+| Auth | Keycloak (KeyToMarvel.com) | external |
 
-### Frontend
-- **Dev server**: `http://localhost:5173`
-- **Stack**: React 18 + TypeScript + Vite + Tailwind CSS 4 + Yarn
-- **Build**: `yarn build` ✅ passes (built in ~3.7s)
-- **Key packages**: `keycloak-js@26.2.4`, `axios`, `react-router-dom`, `i18next`, `react-i18next`, `katex`, `sympy`
-
-### Keycloak (KeyToMarvel.com)
-- **Realm**: `catobigato` (pre-created)
-- **Client ID**: `catobigato`
-- **Client Secret**: `qXhU9L8p8BDdXBAHpBPpx0e22qsX5GUJ`
-- **URL**: `https://www.keytomarvel.com`
-- **OIDC Discovery**: `https://www.keytomarvel.com/realms/catobigato/.well-known/openid-configuration`
+> **Note**: Port 8000 is occupied by FlowDesk API. Port 8081 is used consistently in both dev and prod to avoid surprises.
 
 ---
 
-## Backend Structure
+## Prerequisites
 
-```
-backend/
-├── apps/
-│   ├── accounts/          # Keycloak JWT auth + UserProfile + Follow
-│   │   ├── models.py      # UserProfile (keycloak_sub), UserFollow
-│   │   ├── views.py       # Profile CRUD, follow/unfollow, followers/following lists
-│   │   ├── serializers.py # UserProfileSerializer, FollowersSerializer, etc.
-│   │   ├── urls.py        # /api/v1/accounts/*
-│   │   └── authentication.py  # KeycloakAuthentication (JWT RS256 via JWKS)
-│   ├── calculator/        # SymPy math engine + CustomFunction registry
-│   │   ├── engine.py      # CalculatorEngine (SymPy-based, 8 modes)
-│   │   ├── models.py      # CustomFunction, CalculationHistory
-│   │   ├── views.py       # evaluate, simplify, factor, expand, solve, derivative, integrate, plot, functions CRUD
-│   │   ├── serializers.py # CustomFunctionSerializer, HistorySerializer
-│   │   └── urls.py        # /api/v1/calculator/*
-│   ├── learning/          # Notes, QuestionSets, Exams (models+stubs ready)
-│   │   ├── models.py      # Note (JSON blocks), QuestionSet, Exam, ExamAttempt
-│   │   ├── views.py       # Stub endpoints (planned for Phase 2)
-│   │   └── urls.py        # /api/v1/learning/*
-│   ├── puzzles/           # Puzzle, PuzzleSource (models+stubs ready)
-│   │   ├── models.py      # Puzzle, PuzzleSource, Tag
-│   │   ├── views.py       # Stub endpoints (planned for Phase 4)
-│   │   └── urls.py        # /api/v1/puzzles/*
-│   ├── social/            # Messaging, Groups (models+stubs ready)
-│   │   ├── models.py      # Conversation, Message, Group, GroupMembership
-│   │   ├── views.py       # Stub endpoints (planned for Phase 5)
-│   │   └── urls.py        # /api/v1/social/*
-│   └── core/              # Shared utilities, middleware, decorators
-├── catobigato/
-│   ├── settings/
-│   │   ├── __init__.py    # Auto-detects DJANGO_ENV → loads correct env settings
-│   │   ├── base.py        # Base config (INSTALLED_APPS, MIDDLEWARE, rest_framework, cors, i18n, etc.)
-│   │   ├── development.py # Dev overrides (DEBUG=True, CORS_ALLOW_ALL_ORIGINS=True)
-│   │   ├── production.py  # Prod overrides (env vars, SSL, strict CORS)
-│   │   └── testing.py     # Test overrides (SQLite, no CORS)
-│   ├── urls.py            # Main URL routing (admin, health, api/v1/)
-│   └── wsgi.py
-├── venv/                  # Python virtual environment
-├── requirements.txt
-├── manage.py
-├── .env                   # Local env vars (gitignored)
-└── .env.example           # Template for .env
-```
+- Python 3.12+
+- Node 24+ / Yarn 1.22+
+- Docker (for the shared `whereq-postgres:17` container)
 
----
+### Local PostgreSQL
 
-## Frontend Structure
-
-```
-frontend/
-├── src/
-│   ├── App.tsx            # BrowserRouter + sticky nav + auth + lazy pages
-│   ├── auth/
-│   │   └── keycloak.ts    # Keycloak-js singleton, configured for catobigato realm
-│   ├── hooks/
-│   │   └── useAuth.ts     # useAuth hook — login/logout/register/isAuthenticated/user info
-│   ├── api/
-│   │   └── index.ts       # Axios client + interceptors + typed API functions
-│   ├── i18n/
-│   │   ├── index.ts       # i18next configuration
-│   │   └── locales/
-│   │       ├── en.json
-│   │       ├── zh.json
-│   │       └── fr.json
-│   ├── pages/
-│   │   ├── HomePage.tsx
-│   │   ├── CalculatorPage.tsx
-│   │   ├── ProfilePage.tsx
-│   │   ├── LearningPage.tsx   # stub — Phase 2
-│   │   ├── PuzzlesPage.tsx    # stub — Phase 4
-│   │   ├── SocialPage.tsx     # stub — Phase 5
-│   │   ├── KeycloakCallback.tsx
-│   │   └── LoginError.tsx
-│   └── index.css          # Tailwind 4 @import, CSS variables, KaTeX fonts, custom scrollbar
-├── public/
-│   ├── silent-check-sso.html  # Keycloak PKCE silent SSO
-│   └── favicon.ico
-├── index.html
-├── package.json
-├── vite.config.ts         # @tailwindcss/vite plugin, path aliases
-├── tsconfig.json
-├── .env                   # VITE_KEYCLOAK_*, VITE_API_BASE_URL (gitignored)
-└── .env.example
-```
-
----
-
-## API Endpoints
-
-### Public (No Auth)
-| Method | Path | Description |
-|--------|------|-------------|
-| GET | `/health/` | Health check |
-| POST | `/api/v1/calculator/evaluate/` | Evaluate math expression |
-| POST | `/api/v1/calculator/simplify/` | Simplify expression |
-| POST | `/api/v1/calculator/solve/` | Solve equation |
-| POST | `/api/v1/calculator/derivative/` | Compute derivative |
-| POST | `/api/v1/calculator/integrate/` | Compute integral |
-| POST | `/api/v1/calculator/plot/` | Generate SVG plot |
-| GET | `/api/v1/learning/notes/` | Notes stub (Phase 2) |
-| GET | `/api/v1/learning/questions/` | Questions stub |
-| GET | `/api/v1/learning/question-sets/` | Question sets stub |
-| GET | `/api/v1/puzzles/puzzles/` | Puzzles stub |
-| GET | `/api/v1/puzzles/sources/` | Puzzle sources stub |
-| GET | `/api/v1/social/conversations/` | Conversations stub |
-| GET | `/api/v1/social/messages/` | Messages stub |
-
-### Auth-Required (Keycloak JWT Bearer)
-| Method | Path | Description |
-|--------|------|-------------|
-| GET | `/api/v1/accounts/profile/` | Get/update own profile |
-| GET | `/api/v1/accounts/profile/<uuid>/` | Get any user's public profile |
-| POST | `/api/v1/accounts/follow/<uuid>/` | Follow a user |
-| DELETE | `/api/v1/accounts/follow/<uuid>/` | Unfollow a user |
-| GET | `/api/v1/accounts/followers/` | List my followers |
-| GET | `/api/v1/accounts/following/` | List who I follow |
-| GET | `/api/v1/accounts/follow-status/<uuid>/` | Check mutual follow status |
-| GET | `/api/v1/calculator/functions/` | List custom functions |
-| POST | `/api/v1/calculator/functions/` | Create custom function |
-| PUT | `/api/v1/calculator/functions/<id>/` | Update custom function |
-| DELETE | `/api/v1/calculator/functions/<id>/` | Delete custom function |
-| GET | `/api/v1/calculator/history/` | Get calculation history |
-| DELETE | `/api/v1/calculator/history/` | Clear history |
-
----
-
-## Database Tables
-
-All created via `python manage.py migrate`:
-- `accounts_userprofile` — user profile linked to Keycloak sub
-- `accounts_userfollow` — follower/following relationships
-- `calculator_customfunction` — user-defined functions with params/body
-- `calculator_calculationhistory` — history entries with SVG plot data
-- `learning_note` — notes with JSON block content
-- `learning_questionset` — grouped questions
-- `learning_exam` — exam definitions
-- `learning_examattempt` — exam attempts by users
-- `puzzles_puzzlesource` — puzzle source (manual/crawled)
-- `puzzles_puzzle` — puzzles with JSON content
-- `puzzles_tag` — puzzle tags
-- `social_conversation` — direct or group conversations
-- `social_message` — messages
-- `social_group` — social groups
-- `social_groupmembership` — group memberships
-
----
-
-## Running Commands
+The shared `whereq-db` Docker container hosts multiple databases. The `catobigato` database was created once with:
 
 ```bash
-# Backend
-cd /home/whereq/github/catobigato.com/backend
-source venv/bin/activate
-python manage.py runserver 0.0.0.0:8001     # start dev server
-python manage.py check                          # verify config (should show no issues)
-python manage.py makemigrations                  # create migrations after model changes
-python manage.py migrate                         # apply migrations
-
-# Frontend
-cd /home/whereq/github/catobigato.com/frontend
-yarn dev                                        # start dev server (http://localhost:5173)
-yarn build                                      # production build → dist/
+docker exec whereq-db psql -U flowdesk -c "CREATE ROLE catobigato WITH LOGIN PASSWORD '<password>';"
+docker exec whereq-db psql -U flowdesk -c "CREATE DATABASE catobigato OWNER catobigato ENCODING 'UTF8';"
+docker exec whereq-db psql -U flowdesk -c "GRANT ALL PRIVILEGES ON DATABASE catobigato TO catobigato;"
+docker exec whereq-db psql -U flowdesk -d catobigato -c "GRANT ALL ON SCHEMA public TO catobigato;"
 ```
+
+The password lives in `backend-fastapi/.env` (gitignored). See `.env.example` for required keys.
+
+---
+
+## Local Development
+
+### Backend (FastAPI)
+
+```bash
+cd backend-fastapi
+
+# First time setup
+python3 -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
+
+# Configure environment
+cp .env.example .env
+# Edit .env: set DB_PASSWORD (and any other values for your local setup)
+
+# Apply database migrations
+alembic upgrade head
+
+# Start dev server with hot-reload
+uvicorn main:app --reload --host 0.0.0.0 --port 8001
+```
+
+| URL | Description |
+|-----|-------------|
+| `http://localhost:8001` | API root |
+| `http://localhost:8001/docs` | Swagger UI (interactive API docs) |
+| `http://localhost:8001/redoc` | ReDoc API docs |
+| `http://localhost:8001/health` | Health check endpoint |
+
+### Frontend (React + Vite)
+
+```bash
+cd frontend
+
+# First time setup
+yarn install
+
+# Configure environment
+cp .env.example .env
+# Edit .env: set VITE_KEYCLOAK_URL, VITE_KEYCLOAK_REALM, VITE_KEYCLOAK_CLIENT_ID, VITE_API_BASE_URL
+
+# Start dev server on port 8081
+yarn dev
+```
+
+Frontend is at `http://localhost:8081`.
+
+The Vite dev server proxies `/api/*` → `http://localhost:8001`, so no CORS configuration is needed during development.
+
+### Running both together (two terminals)
+
+```bash
+# Terminal 1 — backend
+cd backend-fastapi && source venv/bin/activate && uvicorn main:app --reload --host 0.0.0.0 --port 8001
+
+# Terminal 2 — frontend
+cd frontend && yarn dev
+```
+
+---
+
+## Database Migrations (Alembic)
+
+Alembic is configured for async SQLAlchemy and reads the DB URL from `backend-fastapi/.env`.
+
+```bash
+cd backend-fastapi
+source venv/bin/activate
+
+# Apply all pending migrations (run this after pulling new code)
+alembic upgrade head
+
+# Create a migration after changing a model
+alembic revision --autogenerate -m "add_foo_column_to_notes"
+
+# Rollback last migration
+alembic downgrade -1
+
+# Show current applied revision
+alembic current
+
+# Show full migration history
+alembic history --verbose
+```
+
+All models are imported in `alembic/env.py` so autogenerate detects schema changes across all six modules: `accounts`, `calculator`, `learning`, `puzzles`, `social`, `visual_math`.
+
+---
+
+## Debugging
+
+### Backend
+
+```bash
+# Enable verbose SQL + debug logging
+DEBUG=true uvicorn main:app --reload --host 0.0.0.0 --port 8001
+
+# Verify settings are loading from .env
+python -c "from app.config import get_settings; s=get_settings(); print(s.database_url, s.keycloak_issuer)"
+
+# Test DB connectivity (replace <password> with value from .env)
+python -c "
+import asyncio, asyncpg
+async def test():
+    conn = await asyncpg.connect(host='localhost', port=5432,
+                                  user='catobigato', password='<password>',
+                                  database='catobigato')
+    print(await conn.fetchrow('SELECT current_database(), current_user'))
+    await conn.close()
+asyncio.run(test())
+"
+
+# Check migration state
+alembic current
+
+# Preview migration SQL without applying
+alembic upgrade head --sql
+```
+
+### Frontend
+
+```bash
+# Type-check without building
+yarn tsc --noEmit
+
+# Full production build (catches all TypeScript errors)
+yarn build
+
+# Preview production build on port 8081
+yarn preview --port 8081
+```
+
+Vite's dev server uses HMR — most changes apply instantly without a page reload. React DevTools work as normal.
+
+### Keycloak auth debugging
+
+If login fails or tokens are rejected:
+
+1. Open **DevTools → Network** and look for requests to `keytomarvel.com`
+2. Check `frontend/.env`:
+   - `VITE_KEYCLOAK_URL` must be `https://www.keytomarvel.com` — no trailing slash, **no realm path**
+   - The Keycloak JS SDK appends the realm path internally
+3. In Keycloak admin, confirm the `catobigato` client has **Valid Redirect URIs** including `http://localhost:8081/*`
+4. Check backend logs for `401 Invalid token` — the JWT `iss` claim must equal `KEYCLOAK_URL/realms/KEYCLOAK_REALM`
+5. Common mistake: `VITE_KEYCLOAK_URL=https://www.keytomarvel.com/realms/catobigato` — this is wrong; the URL should stop at the domain
+
+---
+
+## Project Structure
+
+```
+catobigato.com/
+├── backend-fastapi/              # FastAPI backend (Python 3.12)
+│   ├── app/
+│   │   ├── config.py             # Pydantic settings — reads all config from .env
+│   │   ├── database.py           # SQLAlchemy async engine + session factory
+│   │   ├── dependencies.py       # get_current_user (Keycloak JWT RS256 verification)
+│   │   ├── models/               # SQLAlchemy ORM models (one file per domain)
+│   │   │   ├── accounts.py       # UserProfile, UserFollow
+│   │   │   ├── calculator.py     # CustomFunction, CalculationHistory
+│   │   │   ├── learning.py       # Note, Question, QuestionSet, ExamAttempt, StudyGroup
+│   │   │   ├── puzzles.py        # PuzzleSource, Puzzle
+│   │   │   ├── social.py         # Conversation, Message
+│   │   │   └── visual_math.py    # GeoGebraSketch, AnimationProject
+│   │   ├── routers/              # FastAPI route handlers (one file per domain)
+│   │   │   ├── accounts.py       # /api/v1/accounts/*    ← 7 working endpoints
+│   │   │   ├── calculator.py     # /api/v1/calculator/*  ← working (SymPy engine)
+│   │   │   ├── learning.py       # /api/v1/learning/*    ← stubs (Phase 2)
+│   │   │   ├── puzzles.py        # /api/v1/puzzles/*     ← stubs (Phase 4)
+│   │   │   ├── social.py         # /api/v1/social/*      ← stubs (Phase 5)
+│   │   │   └── visual_math.py    # /api/v1/visual-math/* ← stubs (Phase 3)
+│   │   ├── schemas/              # Pydantic request/response schemas
+│   │   └── services/             # Business logic layer
+│   │       ├── calculator_engine.py   # SymPy evaluation (6 modes)
+│   │       ├── geogebra_service.py    # Rule-based expression → GGBScript
+│   │       └── ...                    # Placeholder services (Phase 3+)
+│   ├── alembic/                  # Alembic migration environment
+│   │   ├── env.py                # Async migration runner (imports all models)
+│   │   └── versions/             # Auto-generated migration files
+│   ├── alembic.ini               # Alembic config (URL injected from settings)
+│   ├── main.py                   # FastAPI app: CORS middleware + router registration
+│   ├── requirements.txt
+│   ├── Dockerfile
+│   ├── .env                      # Local secrets — gitignored
+│   └── .env.example              # Template (no secrets)
+│
+├── frontend/                     # React 19 + Vite + TypeScript frontend
+│   ├── src/
+│   │   ├── App.tsx               # Routes, layout, responsive nav, theme/lang controls
+│   │   ├── main.tsx              # Keycloak init → ThemeProvider → AuthProvider → React
+│   │   ├── auth/
+│   │   │   ├── keycloak.ts       # Keycloak-js singleton (URL + realm + clientId only)
+│   │   │   └── AuthProvider.tsx  # Context: isAuthenticated, displayName, avatar, login/logout
+│   │   ├── theme/
+│   │   │   └── ThemeProvider.tsx # Dark/light toggle — localStorage + system pref detection
+│   │   ├── api/
+│   │   │   └── index.ts          # Axios client with Bearer token interceptor
+│   │   ├── i18n/                 # EN / 中文 / FR translation JSON files
+│   │   ├── pages/                # Route-level page components
+│   │   └── index.css             # Tailwind v4 + CSS variables (light & dark themes)
+│   ├── public/
+│   │   ├── catobigato.png        # App logo
+│   │   ├── favicon.png           # Favicon (copy of catobigato.png)
+│   │   └── silent-check-sso.html # Required for Keycloak PKCE silent SSO check
+│   ├── index.html                # Entry HTML — title: CatobiGato, favicon: favicon.png
+│   ├── vite.config.ts            # Dev port: 8081, /api proxy → :8001
+│   ├── .env                      # Local env — gitignored
+│   └── .env.example              # Template (no secrets)
+│
+├── docs/
+│   ├── requirements.md           # Product requirements and roadmap
+│   ├── SPEC.md                   # Technical spec (pre-alpha reference, partially outdated)
+│   ├── DEVELOPMENT.md            # This file
+│   └── RUNBOOK.md                # Production deployment guide
+├── docker-compose.yml            # Production: catobigato-api:8001 + catobigato-frontend:8081
+└── .gitignore
+```
+
+---
+
+## API Reference
+
+### Public (no auth)
+
+| Method | Path | Description |
+|--------|------|-------------|
+| GET | `/health` | Health check |
+| POST | `/api/v1/calculator/evaluate` | Evaluate math expression (SymPy) |
+| POST | `/api/v1/calculator/simplify` | Simplify expression |
+| POST | `/api/v1/calculator/factor` | Factor expression |
+| POST | `/api/v1/calculator/solve` | Solve equation |
+| POST | `/api/v1/calculator/derivative` | Compute derivative |
+| POST | `/api/v1/calculator/integrate` | Compute integral |
+| POST | `/api/v1/calculator/plot` | Generate plot data |
+
+### Auth-required (Keycloak Bearer token)
+
+| Method | Path | Description |
+|--------|------|-------------|
+| GET/PUT | `/api/v1/accounts/profile` | Own profile |
+| GET | `/api/v1/accounts/profile/{id}` | Any user's public profile |
+| POST | `/api/v1/accounts/follow/{id}` | Follow user |
+| DELETE | `/api/v1/accounts/follow/{id}` | Unfollow user |
+| GET | `/api/v1/accounts/followers` | My followers |
+| GET | `/api/v1/accounts/following` | Who I follow |
+| GET/POST | `/api/v1/calculator/functions` | List / create custom functions |
+| PUT/DELETE | `/api/v1/calculator/functions/{id}` | Update / delete custom function |
+| GET | `/api/v1/calculator/history` | Calculation history |
+
+---
+
+## Environment Variables
+
+### `backend-fastapi/.env`
+
+| Variable | Default | Required | Description |
+|----------|---------|----------|-------------|
+| `DEBUG` | `false` | No | Enable SQLAlchemy query logging |
+| `DB_HOST` | `localhost` | No | PostgreSQL host |
+| `DB_PORT` | `5432` | No | PostgreSQL port |
+| `DB_NAME` | `catobigato` | No | Database name |
+| `DB_USER` | `catobigato` | No | Database role |
+| `DB_PASSWORD` | — | **Yes** | Database password (no default) |
+| `KEYCLOAK_URL` | `https://www.keytomarvel.com` | No | Keycloak base URL |
+| `KEYCLOAK_REALM` | `catobigato` | No | Realm name |
+| `KEYCLOAK_CLIENT_ID` | `catobigato` | No | Client ID |
+| `CORS_ORIGINS` | `["http://localhost:8081"]` | No | Allowed origins (JSON array) |
+
+### `frontend/.env`
+
+| Variable | Description |
+|----------|-------------|
+| `VITE_KEYCLOAK_URL` | Keycloak base URL — `https://www.keytomarvel.com` |
+| `VITE_KEYCLOAK_REALM` | Realm — `catobigato` |
+| `VITE_KEYCLOAK_CLIENT_ID` | Client ID — `catobigato` |
+| `VITE_API_BASE_URL` | Backend base URL — `http://localhost:8001` |
 
 ---
 
 ## Key Design Decisions
 
-### Auth: Keycloak-only, no local password auth
-- No `AbstractUser` or custom User model with passwords
-- `keycloak_sub` is the single source of user identity
-- `UserProfile` auto-created on first API access
-- JWT RS256 validation via Keycloak's JWKS endpoint (no shared secret)
-- Frontend uses `keycloak-js` with PKCE for login flow
+### Auth: Keycloak-only, no local passwords
+- `keycloak_sub` (UUID from Keycloak) is the sole user identity
+- JWT RS256 validated against Keycloak's public JWKS endpoint — no shared secret needed
+- `UserProfile` is auto-created on first authenticated API call
+- Frontend uses PKCE (S256) via `keycloak-js` — Keycloak initialises **before** React mounts
 
-### Settings dispatch: `DJANGO_ENV`-aware
-- `catobigato/settings/__init__.py` auto-imports based on `DJANGO_ENV`
-- Default: `development` if `DJANGO_ENV` not set
-- No hardcoding of env-specific values in `base.py`
+### FastAPI over Django
+- Native `async/await` required for Phase 3 LLM pipelines (VisionSolverAgent, MathAnimator)
+- Pydantic v2 validation + auto-generated `/docs` (Swagger)
+- SQLAlchemy async ORM with `asyncpg` driver
 
-### Custom function system: SymPy expression-based (not eval)
-- User-defined functions stored in `calculator_customfunction` table
-- Parameters and body stored as strings, executed via SymPy `sympify`
-- No `eval()` — safe symbolic math execution only
-- Supports: `def myfunc(x, y) = x^2 + y` syntax
+### Theme: CSS variables toggled by `data-theme`
+- `[data-theme="dark"]` on `<html>` switches the entire colour palette
+- `ThemeProvider` persists choice to `localStorage`, defaults to `prefers-color-scheme`
+- All themeable colours use `var(--color-*)` — never Tailwind colour utilities
 
-### Block-based content model for Notes
-- Notes stored as JSON array of blocks in `Note.content JSONField`
-- Block types: `text`, `math` (LaTeX), `formula` (KaTeX render), `code`, `image`, `divider`
-- Frontend renders each block with appropriate component
-- Reorderable, editable, deletable blocks
-
-### Database: dedicated role, not superuser
-- `catobigato` role owns `catobigato` database
-- `whereq` superuser used only for initial DB/role creation
-- Connection from Django uses `catobigato` role with `CatoBigato2026!`
-
----
-
-## Development Notes
-
-- Port 8000 occupied by `flowdesk-api` (LXD container) — CatobiGato uses 8001
-- `DJANGO_SETTINGS_MODULE=catobigato.settings` works because `__init__.py` dispatches to correct env
-- Keycloak JWT `aud` claim must match `KEYCLOAK_CLIENT_ID` (`catobigato`)
-- Tailwind CSS v4 uses `@tailwindcss/vite` plugin (not PostCSS), `@import "tailwindcss"` directive
-- React lazy loading used for non-critical pages (Learning, Puzzles, Social) — no `<Suspense>` wrapper needed with Vite
-- `kaTeX` fonts bundled in `index.css` to avoid CDN dependency for math rendering
-
----
-
-## Phase 2 Plan: Learning Module
-
-**Goal**: Block-based Notes editor with CRUD
-
-### Backend
-- [ ] `Note` model — already exists with JSON `content` field
-- [ ] CRUD views for `/api/v1/learning/notes/`
-- [ ] Share notes (public/private) via `Note.is_public` + view permission
-- [ ] Tags for notes
-
-### Frontend
-- [ ] `NotesPage.tsx` — list view of user's notes
-- [ ] `NoteEditor.tsx` — block-based editor
-  - Block types: `text`, `math` (LaTeX input → KaTeX preview), `code`, `image`
-  - Add/delete/reorder blocks
-  - Auto-save on change (debounced)
-- [ ] `/learning/notes` route → authenticated only
+### Port 8081 everywhere
+- Vite dev server and the production Docker container both bind to **8081**
+- Avoids conflicts with FlowDesk (8080) and Vite's default 5173

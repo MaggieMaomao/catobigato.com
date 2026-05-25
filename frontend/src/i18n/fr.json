@@ -1,42 +1,256 @@
 {
   "app": {
-    "name": "CatobiGato",
+    "name": "CatoBigato",
     "tagline": "Apprendre. Pratiquer. Grandir."
   },
   "nav": {
     "home": "Accueil",
+    "tutor": "Tuteur",
     "calculator": "Calculatrice",
     "learning": "Apprentissage",
-    "puzzles": "Puzzles",
+    "puzzles": "\u00c9nigmes",
     "social": "Social",
-    "visual_math": "Maths Visuelles",
+    "visual_math": "Visuels",
     "profile": "Profil",
-    "settings": "Paramètres"
+    "settings": "Param\u00e8tres"
   },
   "auth": {
     "signIn": "Connexion",
-    "signOut": "Déconnexion",
+    "signOut": "D\u00e9connexion",
     "signUp": "S'inscrire",
     "welcome": "Bienvenue"
+  },
+  "hero": {
+    "eyebrow": "Compagnon d'\u00e9tude IA \u00b7 primaire au sup\u00e9rieur",
+    "title_pre": "Apprenez n'importe quoi avec ",
+    "title_em": "un chat malin",
+    "title_post": " \u00e0 vos c\u00f4t\u00e9s.",
+    "lede": "CatoBigato est un tuteur chaleureux et malicieux qui explique, interroge et trace des courbes \u2014 en maths, en sciences et en lettres. Photographiez un probl\u00e8me, posez la question dans vos mots \u2014 CatoBigato s'adapte \u00e0 votre fa\u00e7on de penser.",
+    "startLearning": "Commencer",
+    "watchDemo": "Voir la d\u00e9mo \u00b7 2 min",
+    "subjects": "Mati\u00e8res",
+    "rating": "Note des \u00e9l\u00e8ves",
+    "solved": "Probl\u00e8mes r\u00e9solus",
+    "floatSolve": "R\u00e9soudre x",
+    "floatBalance": "\u00c9quilibrer",
+    "floatEssay": "Disserte not\u00e9e",
+    "floatEssaySub": "A\u2212 \u00b7 th\u00e8se claire",
+    "floatStreak": "S\u00e9rie de 14 jours",
+    "floatStreakSub": "tenez bon"
+  },
+  "pillars": {
+    "tag": "Tous vos outils, joliment rang\u00e9s",
+    "title_pre": "Cinq outils, ",
+    "title_em": "un bureau apais\u00e9",
+    "title_post": ".",
+    "desc": "Chacun se cache derri\u00e8re un \u00e9l\u00e9ment du menu en haut \u2014 voici ce qu'on y trouve.",
+    "open": "Ouvrir"
+  },
+  "pillar": {
+    "tutor": {
+      "tag": "Pi\u00e8ce ma\u00eetresse",
+      "title_pre": "Parlez simplement. ",
+      "title_em": "Catobi \u00e9coute, r\u00e9fl\u00e9chit, montre sa d\u00e9marche.",
+      "desc": "Un tuteur conversationnel \u2014 bases de connaissances jointes, m\u00e9moire entre sessions, brouillons en Co-R\u00e9daction, TutorBots sp\u00e9cialis\u00e9s par mati\u00e8re."
+    },
+    "calculator": {
+      "tag": "Calculer",
+      "title_pre": "Une calculatrice. ",
+      "title_em": "Six modes.",
+      "desc": "De l'arithm\u00e9tique au calcul symbolique, avec des fonctions personnalisables \u00e0 sauvegarder et r\u00e9utiliser."
+    },
+    "learning": {
+      "tag": "S'entra\u00eener",
+      "title_pre": "Notes, s\u00e9ries, examens \u2014 ",
+      "title_em": "un suivi tout en douceur",
+      "title_post": ".",
+      "desc": "Prenez des notes, montez des s\u00e9ries, passez des examens chronom\u00e9tr\u00e9s, retravaillez les erreurs. Catobi corrige, les profs aussi."
+    },
+    "puzzles": {
+      "tag": "D\u00e9couvrir",
+      "title_pre": "Une \u00e9nigme par jour, ",
+      "title_em": "align\u00e9e au programme",
+      "desc": "Parcourez une banque grandissante de probl\u00e8mes \u2014 ou concevez les v\u00f4tres et partagez-les. Versionn\u00e9es, exportables."
+    },
+    "social": {
+      "tag": "Ensemble",
+      "title_pre": "Avec des amis. ",
+      "title_em": "Ou tranquillement seul\u00b7e.",
+      "desc": "Suivez vos camarades, formez des groupes, partagez vos progr\u00e8s vers Google Agenda ou WeChat. Comp\u00e9tition optionnelle, jamais bruyante."
+    },
+    "visual": {
+      "tag": "Visualiser",
+      "title_pre": "Chaque concept, ",
+      "title_em": "dessin\u00e9 en direct",
+      "title_post": ".",
+      "desc": "Diagrammes SVG anim\u00e9s pour maths, physique, chimie, biologie, lettres et arts. Rendu directement dans le navigateur \u2014 rapide et hors-ligne friendly."
+    }
+  },
+  "navTree": {
+    "tutor": {
+      "blurb": "Parlez \u00e0 Catobi \u2014 explications, brouillons et m\u00e9moire entre les sessions.",
+      "chat": "Conversation",
+      "tutorbot": "TutorBot",
+      "cowriter": "Co-R\u00e9daction",
+      "book": "Lecture",
+      "knowledge": "Base de connaissances",
+      "memory": "M\u00e9moire"
+    },
+    "calculator": {
+      "blurb": "Six modes en un \u2014 de l'arithm\u00e9tique au symbolique.",
+      "basic": "Basique",
+      "scientific": "Scientifique",
+      "calculus": "Analyse",
+      "algebra": "Solveur d'alg\u00e8bre",
+      "graphing": "Traceur",
+      "custom": "Fonctions perso"
+    },
+    "learning": {
+      "blurb": "Notes, s\u00e9ries, examens \u2014 votre suivi d'\u00e9tudes en un seul endroit.",
+      "notes": "Notes",
+      "sets": "S\u00e9ries d'exercices",
+      "exams": "Examens chronom\u00e9tr\u00e9s",
+      "practice": "Entra\u00eenement",
+      "corrections": "\u00c9tude des corrections",
+      "stats": "Stats & rapports"
+    },
+    "puzzles": {
+      "blurb": "Probl\u00e8mes align\u00e9s au programme et \u00e9nigmes de la communaut\u00e9.",
+      "browse": "Parcourir",
+      "daily": "\u00c9nigme du jour",
+      "create": "Cr\u00e9er une \u00e9nigme",
+      "mine": "Mes \u00e9nigmes",
+      "aligned": "S\u00e9ries par programme",
+      "import": "Import / export"
+    },
+    "social": {
+      "blurb": "Amis, groupes et \u00e9mulation douce, \u00e0 la carte.",
+      "friends": "Amis",
+      "groups": "Groupes d'\u00e9tude",
+      "messages": "Messages",
+      "feed": "Fil d'activit\u00e9",
+      "board": "Classements",
+      "calendar": "Partager \u00e0 l'agenda"
+    },
+    "visual": {
+      "blurb": "Chaque mati\u00e8re en SVG anim\u00e9 et interactif.",
+      "math": "Math\u00e9matiques",
+      "phys": "Physique",
+      "chem": "Chimie",
+      "bio": "Biologie",
+      "lit": "Lettres",
+      "arts": "Arts"
+    }
+  },
+  "tutorPreview": {
+    "tag": "Tuteur IA \u00b7 aper\u00e7u en direct",
+    "title_pre": "Tout le tuteur, ",
+    "title_em": "une fen\u00eatre apais\u00e9e",
+    "title_post": ".",
+    "desc": "Discutez avec Catobi, convoquez un TutorBot sp\u00e9cialis\u00e9, joignez vos lectures, r\u00e9digez en Co-R\u00e9daction \u2014 tous les modes partagent la m\u00eame m\u00e9moire de vous.",
+    "greeting": "Qu'apprend-on aujourd'hui ?",
+    "placeholder": "Posez n'importe quelle question \u00e0 Catobi \u2014 collez un probl\u00e8me, photographiez, ou discutez simplement.",
+    "attach": "Joindre",
+    "send": "Envoyer",
+    "settings": "Param\u00e8tres",
+    "newChat": "Nouvelle conversation",
+    "chipLabel": "Essayez une question",
+    "example1": "Explique la photosynth\u00e8se comme si j'avais 11 ans.",
+    "example2": "R\u00e9sous x\u00b2 \u2212 5x + 6 = 0 \u00e9tape par \u00e9tape.",
+    "example3": "Critique la th\u00e8se de ma dissertation (jointe).",
+    "example4": "Interroge-moi sur la R\u00e9volution fran\u00e7aise.",
+    "saveNotebook": "Sauvegarder dans le carnet",
+    "activity": "Activit\u00e9"
+  },
+  "calcPreview": {
+    "tag": "Calculatrice \u00b7 en direct",
+    "title_pre": "Tapez comme vous parlez. ",
+    "title_em": "Voyez \u00e7a prendre vie.",
+    "desc": "Catobi r\u00e9pond en langage naturel, avec des math\u00e9matiques bien typographi\u00e9es et des graphes en direct. Coupez-la quand vous voulez \u2014 discutez, relancez, demandez \u00ab attends, pourquoi ? \u00bb.",
+    "list1": "Trac\u00e9s en direct et carnet de g\u00e9om\u00e9trie.",
+    "list2": "Calcul symbolique \u2014 pas seulement num\u00e9rique.",
+    "list3": "Lit les photos, y compris les formules manuscrites.",
+    "list4": "Fonctions perso \u00e0 sauvegarder, partager, versionner.",
+    "tabSolve": "R\u00e9soudre",
+    "tabGraph": "Tracer",
+    "tabNotes": "Notes",
+    "explain": "R\u00e8gle de la puissance terme \u00e0 terme : \u222b3x\u00b2 = x\u00b3, \u222b2x = x\u00b2. N'oubliez pas la constante d'int\u00e9gration"
+  },
+  "subjectsStrip": {
+    "tag": "Mati\u00e8res couvertes",
+    "title_pre": "De l'\u00e9cole primaire \u00e0 la fac, ",
+    "title_em": "presque toutes les mati\u00e8res",
+    "title_post": ".",
+    "desc": "Catobi parle une langue diff\u00e9rente pour chaque domaine \u2014 toujours avec la m\u00eame douceur et patience."
+  },
+  "flow": {
+    "tag": "Comment \u00e7a marche",
+    "title_pre": "Une question, ",
+    "title_em": "cinq pas en douceur",
+    "title_post": ".",
+    "desc": "Bien plus que des r\u00e9ponses : Catobi enseigne la fa\u00e7on de penser qui les produit.",
+    "step1_title": "Photo ou texte",
+    "step1_desc": "Une photo de devoir, un PDF, ou la question dans vos mots.",
+    "step2_title": "Catobi \u00e9coute",
+    "step2_desc": "Elle comprend ce qui est vraiment demand\u00e9, dans la langue que vous utilisez.",
+    "step3_title": "Elle d\u00e9roule",
+    "step3_desc": "Raisonnement \u00e9tape par \u00e9tape \u2014 d\u00e9monstrations d\u00e9taill\u00e9es, sch\u00e9mas trac\u00e9s, unit\u00e9s v\u00e9rifi\u00e9es.",
+    "step4_title": "Petit quiz",
+    "step4_desc": "Un mini-exercice pour v\u00e9rifier que c'est compris. Jamais punitif, toujours ludique.",
+    "step5_title": "Suit vos progr\u00e8s",
+    "step5_desc": "Des notes de progression discr\u00e8tes que vous aurez envie de relire."
+  },
+  "ribbon": {
+    "label1": "Probl\u00e8mes r\u00e9solus cette semaine",
+    "label2": "Note moyenne des \u00e9l\u00e8ves",
+    "label3": "Mati\u00e8res \u00b7 primaire au sup",
+    "label4": "D\u00e9lai moyen pour la 1\u02b3\u1d49 r\u00e9ponse"
+  },
+  "quote": {
+    "text_pre": "\u00ab\u00a0Je ne suis pas l\u00e0 pour passer l'\u00e9preuve \u00e0 ta place \u2014 je suis l\u00e0 pour te faire ",
+    "text_em": "vraiment aimer",
+    "text_post": " la mati\u00e8re qui te donne mal au cr\u00e2ne.\u00a0\u00bb",
+    "attr": "votre tutrice orang\u00e9e"
+  },
+  "footer": {
+    "madeWith": "Fait avec soin",
+    "about": "\u00c0 propos",
+    "blog": "Blog",
+    "privacy": "Confidentialit\u00e9",
+    "terms": "Conditions",
+    "contact": "Contact"
+  },
+  "theme": {
+    "toLight": "Mode clair",
+    "toDark": "Mode sombre"
+  },
+  "subjects": {
+    "math": "Math\u00e9matiques",
+    "physics": "Physique",
+    "chemistry": "Chimie",
+    "biology": "Biologie",
+    "literacy": "Litt\u00e9ratie",
+    "arts": "Arts",
+    "general": "G\u00e9n\u00e9ral"
   },
   "calculator": {
     "title": "Calculatrice",
     "basic": "Basique",
     "scientific": "Scientifique",
-    "trigonometric": "Trigonométrique",
-    "algebra": "Algèbre",
+    "trigonometric": "Trigonom\u00e9trique",
+    "algebra": "Alg\u00e8bre",
     "calculus": "Calcul",
     "graph": "Graphique",
-    "evaluate": "Évaluer",
+    "evaluate": "\u00c9valuer",
     "clear": "Effacer",
     "history": "Historique",
-    "result": "Résultat",
+    "result": "R\u00e9sultat",
     "myFunctions": "Mes fonctions",
-    "createFunction": "Créer une fonction",
+    "createFunction": "Cr\u00e9er une fonction",
     "functionName": "Nom de la fonction",
-    "parameters": "Paramètres",
+    "parameters": "Param\u00e8tres",
     "expression": "Expression",
-    "addParameter": "Ajouter un paramètre",
+    "addParameter": "Ajouter un param\u00e8tre",
     "saveFunction": "Enregistrer la fonction"
   },
   "learning": {
@@ -45,52 +259,43 @@
     "exams": "Examens",
     "practice": "Pratique",
     "statistics": "Statistiques",
-    "createNote": "Créer une note",
+    "createNote": "Cr\u00e9er une note",
     "startExam": "Commencer l'examen"
   },
   "visual_math": {
     "title": "Maths Visuelles",
-    "subtitle": "Géométrie interactive, animations et rendu LaTeX.",
+    "subtitle": "G\u00e9om\u00e9trie interactive, animations et rendu LaTeX.",
     "latex": "LaTeX",
     "geogebra": "GeoGebra",
     "animate": "Animation",
     "render": "Rendre",
     "ggb_commands": "Commandes GGBScript :",
     "loading_geogebra": "Chargement de GeoGebra...",
-    "tip_latex": "Astuce : Tapez une expression mathématique. Appuyez sur Ctrl+Entrée pour rendre.",
-    "tip_geogebra": "Astuce : Utilisez des mots-clés géométriques comme triangle, cercle, angle, bissectrice.",
-    "tip_animate": "Astuce : Décrivez un processus ou une transformation à animer.",
+    "tip_latex": "Astuce : Tapez une expression math\u00e9matique. Appuyez sur Ctrl+Entr\u00e9e pour rendre.",
+    "tip_geogebra": "Astuce : Utilisez des mots-cl\u00e9s g\u00e9om\u00e9triques comme triangle, cercle, angle, bissectrice.",
+    "tip_animate": "Astuce : D\u00e9crivez un processus ou une transformation \u00e0 animer.",
     "latex_placeholder": "ex : x^2 + y^2 = 1",
     "geogebra_placeholder": "ex : triangle avec cercle circonscrit",
-    "animate_placeholder": "ex : montrer comment la formule de l'aire du cercle est dérivée",
-    "status_idle": "—",
+    "animate_placeholder": "ex : montrer comment la formule de l'aire du cercle est d\u00e9riv\u00e9e",
+    "status_idle": "\u2014",
     "status_pending": "En file d'attente",
     "status_analysis": "Analyse du concept...",
-    "status_design": "Conception de la scène...",
-    "status_coding": "Génération du code...",
+    "status_design": "Conception de la sc\u00e8ne...",
+    "status_coding": "G\u00e9n\u00e9ration du code...",
     "status_rendering": "Rendu de l'animation...",
-    "status_done": "Terminé !",
-    "status_failed": "Échec"
-  },
-  "subjects": {
-    "math": "Mathématiques",
-    "physics": "Physique",
-    "chemistry": "Chimie",
-    "biology": "Biologie",
-    "literacy": "Littératie",
-    "arts": "Arts",
-    "general": "Général"
+    "status_done": "Termin\u00e9 !",
+    "status_failed": "\u00c9chec"
   },
   "common": {
     "save": "Enregistrer",
     "cancel": "Annuler",
     "delete": "Supprimer",
     "edit": "Modifier",
-    "create": "Créer",
+    "create": "Cr\u00e9er",
     "search": "Rechercher",
     "loading": "Chargement...",
     "error": "Une erreur s'est produite",
-    "success": "Succès",
-    "noData": "Aucune donnée"
+    "success": "Succ\u00e8s",
+    "noData": "Aucune donn\u00e9e"
   }
 }

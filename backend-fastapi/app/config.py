@@ -1,5 +1,6 @@
 """Settings loaded from environment variables."""
 
+from urllib.parse import quote_plus
 from pydantic_settings import BaseSettings
 from functools import lru_cache
 
@@ -15,15 +16,18 @@ class Settings(BaseSettings):
     db_port: int = 5432
     db_name: str = "catobigato"
     db_user: str = "catobigato"
-    db_password: str = "CatoBigato2026!"
+    db_password: str  # required — set via .env or environment variable
 
     @property
     def database_url(self) -> str:
-        return f"postgresql+asyncpg://{self.db_user}:{self.db_password}@{self.db_host}:{self.db_port}/{self.db_name}"
+        # URL-encode password so special chars (e.g. !) don't break asyncpg
+        pw = quote_plus(self.db_password)
+        return f"postgresql+asyncpg://{self.db_user}:{pw}@{self.db_host}:{self.db_port}/{self.db_name}"
 
     @property
     def sync_database_url(self) -> str:
-        return f"postgresql://{self.db_user}:{self.db_password}@{self.db_host}:{self.db_port}/{self.db_name}"
+        pw = quote_plus(self.db_password)
+        return f"postgresql://{self.db_user}:{pw}@{self.db_host}:{self.db_port}/{self.db_name}"
 
     # Keycloak
     keycloak_url: str = "https://www.keytomarvel.com"
